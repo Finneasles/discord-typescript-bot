@@ -15,6 +15,11 @@ export interface Command {
     cooldown?: number,
 }
 
+export interface Event {
+    name: string,
+    execute: (message: Message, args: Array<string>) => void,
+}
+
 export interface GuildOption {
     [key: string]: any,
 }
