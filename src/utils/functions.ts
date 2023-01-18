@@ -54,12 +54,12 @@ export const setGuildOption = ({
 
 export const nodejsErrorListener = () => {
   process.on("unhandledRejection", (e) => {
-    console.log(e);
+    logger({ message: `${e}`, type: "warn" });
   });
   process.on("uncaughtException", (e) => {
-    console.log(e);
+    logger({ message: `${e}`, type: "warn" });
   });
   process.on("uncaughtExceptionMonitor", (e) => {
-    console.log(e);
+    logger({ message: `${e}`, type: "warn" });
   });
 };
