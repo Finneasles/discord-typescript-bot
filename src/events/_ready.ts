@@ -1,7 +1,7 @@
-import { Event } from "@/types";
+import { Action } from "@/types";
 import { logger } from "@/utils";
 
-const event: Event = {
+const event: Action = {
   name: "ready",
   execute: async (args: any) => {
     const client = args;

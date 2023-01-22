@@ -1,14 +1,17 @@
-import { Event } from "@/types";
+import { Action } from "@/types";
 import { logger } from "@/utils";
 
-const event: Event = {
+const event: Action = {
   name: "messageCreate",
   execute: async (args) => {
     const message = args;
+    if (message.author.bot) return;
     logger({
       message: `Message received: [${message}].`,
       type: "info",
     });
+
+
   },
 };
 
