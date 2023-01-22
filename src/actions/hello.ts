@@ -1,7 +1,7 @@
 import { PermissionFlagsBits } from "discord.js";
-import { Command } from "@/types";
+import { Action } from "@/types";
 
-const command : Command = {
+const action : Action = {
     parameter: "hello",
     execute: (message, args) => {
         let toGreet = message.mentions.members?.first()
@@ -12,4 +12,4 @@ const command : Command = {
     permissions: ["Administrator", PermissionFlagsBits.ManageEmojisAndStickers] // to test
 }
 
-export default command
+export default action

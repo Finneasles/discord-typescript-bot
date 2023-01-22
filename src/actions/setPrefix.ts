@@ -1,7 +1,7 @@
 import { setGuildOption } from "@/utils";
-import { Command } from "@/types";
+import { Action } from "@/types";
 
-const command: Command = {
+const action: Action = {
     parameter: "setPrefix",
   execute: (message, args) => {
     let prefix = args[1];
@@ -14,4 +14,4 @@ const command: Command = {
   aliases: [],
 };
 
-export default command;
+export default action;
