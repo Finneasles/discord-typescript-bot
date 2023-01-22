@@ -1,9 +1,28 @@
-import { GuildOption } from "@/types";
-import { Guild } from "discord.js";
+import { Action, GuildOption } from "@/types";
+import { Guild, Collection, REST, Routes } from "discord.js";
 
 export const validateInstance = (instance: { token: string }) => {
   if (!instance.token) {
     throw new Error("No token provided.");
+  }
+};
+
+export const registerCommands = ({
+  commands,
+  clientId,
+  rest,
+}: {
+  commands: any[];
+  clientId: string | undefined;
+  rest: REST;
+}) => {
+  try {
+    rest.put(Routes.applicationCommands(clientId || ""), {
+      body: commands,
+    });
+    logger({ message: `Commands registered successfully.`, type: "success" });
+  } catch (err) {
+    logger({ message: `${err}`, type: "error" });
   }
 };
 
@@ -18,9 +37,14 @@ export const logger = ({
   const date = new Date();
   const formattedDate = `[${date.toLocaleTimeString()}]`;
   const icon = type
-    ? { error: "❌", warn: "🚩", success: "🚀", info: "💬", connected: "🔗", load: "✅" }[
-        type
-      ]
+    ? {
+        error: "❌",
+        warn: "🚩",
+        success: "🚀",
+        info: "💬",
+        connected: "🔗",
+        load: "✅",
+      }[type]
     : "";
   const color = type
     ? {
@@ -42,6 +66,12 @@ export const logger = ({
     return `${color}${substring}\x1b[0m`;
   });
   log(`${formattedDate} ${icon} ${processedSubstrings.join("")}`);
+};
+
+export const getRandomNumber = (length: number = 1): number => {
+  let min = Math.pow(10, length - 1);
+  let max = min * 10 - 1;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 export const setGuildOption = ({
