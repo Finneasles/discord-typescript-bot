@@ -1,5 +1,5 @@
-import { Action, GuildOption } from "@/types";
-import { Guild, Collection, REST, Routes } from "discord.js";
+import { GuildOption } from "@/types";
+import { Guild, REST, Routes } from "discord.js";
 
 export const validateInstance = (instance: { token: string }) => {
   if (!instance.token) {
